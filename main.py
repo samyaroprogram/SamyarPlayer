@@ -38,7 +38,7 @@ def main(page: ft.Page):
     page.padding = 0
     page.adaptive = True
     page.bgcolor = "#050505"
-    page.decoration = ft.BoxDecoration(gradient=ft.LinearGradient(begin=ft.alignment.top_left, end=ft.alignment.bottom_right, colors=["#1a0b2e", "#0f0c29", "#000000"]))
+    page.decoration = ft.BoxDecoration(gradient=ft.LinearGradient(begin=ft.Alignment.TOP_LEFT, end=ft.Alignment.BOTTOM_RIGHT, colors=["#1a0b2e", "#0f0c29", "#000000"]))
 
     file_picker = ft.FilePicker(on_result=lambda e: handle_file_pick(e))
     page.overlay.extend([file_picker])
@@ -51,16 +51,16 @@ def main(page: ft.Page):
     playlist = []
     current_index = 0
 
-    album_art = ft.Container(content=ft.Icon(ft.icons.ALBUM, size=100, color=ft.colors.with_opacity(0.5, "white")), width=220, height=220, border_radius=20, gradient=ft.LinearGradient(colors=["#6e8efb", "#a777e3"], begin=ft.alignment.top_left, end=ft.alignment.bottom_right), alignment=ft.alignment.center, shadow=ft.BoxShadow(blur_radius=30, color=ft.colors.with_opacity(0.5, "#a777e3")), animate_rotation=ft.animation.Animation(10000, ft.AnimationCurve.LINEAR))
+    album_art = ft.Container(content=ft.Icon(ft.Icons.ALBUM, size=100, color=ft.Colors.with_opacity(0.5, "white")), width=220, height=220, border_radius=20, gradient=ft.LinearGradient(colors=["#6e8efb", "#a777e3"], begin=ft.Alignment.TOP_LEFT, end=ft.Alignment.BOTTOM_RIGHT), alignment=ft.Alignment.CENTER, shadow=ft.BoxShadow(blur_radius=30, color=ft.Colors.with_opacity(0.5, "#a777e3")), animate_rotation=ft.Animation(10000, ft.AnimationCurve.LINEAR))
     now_playing_title = ft.Text("آهنگی انتخاب نشده", size=20, weight=ft.FontWeight.W_900, color="white", text_align=ft.TextAlign.CENTER, max_lines=1, overflow=ft.TextOverflow.ELLIPSIS)
-    now_playing_artist = ft.Text("Samyar Player", size=14, color=ft.colors.with_opacity(0.6, "white"), text_align=ft.TextAlign.CENTER)
+    now_playing_artist = ft.Text("Samyar Player", size=14, color=ft.Colors.with_opacity(0.6, "white"), text_align=ft.TextAlign.CENTER)
     lyric_text = ft.Text("متن آهنگ...", size=16, color="#a777e3", text_align=ft.TextAlign.CENTER, weight=ft.FontWeight.BOLD)
-    progress_slider = ft.Slider(min=0, max=100, value=0, expand=True, active_color="#a777e3", inactive_color=ft.colors.with_opacity(0.2, "white"), thumb_color="white")
+    progress_slider = ft.Slider(min=0, max=100, value=0, expand=True, active_color="#a777e3", inactive_color=ft.Colors.with_opacity(0.2, "white"), thumb_color="white")
     time_current = ft.Text("00:00", size=11, color="grey")
     time_total = ft.Text("00:00", size=11, color="grey")
-    play_btn = ft.IconButton(icon=ft.icons.PLAY_ARROW_ROUNDED, icon_size=60, icon_color="white", bgcolor=ft.colors.with_opacity(0.1, "white"), style=ft.ButtonStyle(shape=ft.CircleBorder(), padding=10))
-    prev_btn = ft.IconButton(icon=ft.icons.SKIP_PREVIOUS_ROUNDED, icon_size=35, icon_color="white")
-    next_btn = ft.IconButton(icon=ft.icons.SKIP_NEXT_ROUNDED, icon_size=35, icon_color="white")
+    play_btn = ft.IconButton(icon=ft.Icons.PLAY_ARROW_ROUNDED, icon_size=60, icon_color="white", bgcolor=ft.Colors.with_opacity(0.1, "white"), style=ft.ButtonStyle(shape=ft.CircleBorder(), padding=10))
+    prev_btn = ft.IconButton(icon=ft.Icons.SKIP_PREVIOUS_ROUNDED, icon_size=35, icon_color="white")
+    next_btn = ft.IconButton(icon=ft.Icons.SKIP_NEXT_ROUNDED, icon_size=35, icon_color="white")
     music_list = ft.ListView(expand=True, spacing=8, padding=10)
     yt_results = ft.ListView(height=200)
 
@@ -77,7 +77,7 @@ def main(page: ft.Page):
             global current_index
             current_index = playlist.index(path)
             play_song(path)
-        row = ft.Container(content=ft.Row([ft.Container(content=ft.Icon(ft.icons.MUSIC_NOTE_ROUNDED, color="white"), width=40, height=40, border_radius=10, bgcolor=ft.colors.with_opacity(0.1, "#a777e3"), alignment=ft.alignment.center), ft.Column([ft.Text(title, color="white", weight=ft.FontWeight.BOLD, size=13, max_lines=1, overflow=ft.TextOverflow.ELLIPSIS), ft.Text("Audio", color="grey", size=10)], expand=True, spacing=2), ft.IconButton(icon=ft.icons.PLAY_ARROW, icon_color="#a777e3", on_click=play_this)]), padding=10, border_radius=15, bgcolor=ft.colors.with_opacity(0.05, "white"), border=ft.border.all(1, ft.colors.with_opacity(0.1, "white")))
+        row = ft.Container(content=ft.Row([ft.Container(content=ft.Icon(ft.Icons.MUSIC_NOTE_ROUNDED, color="white"), width=40, height=40, border_radius=10, bgcolor=ft.Colors.with_opacity(0.1, "#a777e3"), alignment=ft.Alignment.CENTER), ft.Column([ft.Text(title, color="white", weight=ft.FontWeight.BOLD, size=13, max_lines=1, overflow=ft.TextOverflow.ELLIPSIS), ft.Text("Audio", color="grey", size=10)], expand=True, spacing=2), ft.IconButton(icon=ft.Icons.PLAY_ARROW, icon_color="#a777e3", on_click=play_this)]), padding=10, border_radius=15, bgcolor=ft.Colors.with_opacity(0.05, "white"), border=ft.Border.all(1, ft.Colors.with_opacity(0.1, "white")))
         music_list.controls.append(row)
 
     def format_time(ms):
@@ -93,7 +93,7 @@ def main(page: ft.Page):
         audio_player.src = path
         audio_player.update()
         audio_player.play()
-        play_btn.icon = ft.icons.PAUSE_ROUNDED
+        play_btn.icon = ft.Icons.PAUSE_ROUNDED
         album_art.rotate = ft.Rotate(angle=6.28)
         artist = "Unknown Artist"
         try:
@@ -137,11 +137,11 @@ def main(page: ft.Page):
     def toggle_play(e):
         if audio_player.is_playing:
             audio_player.pause()
-            play_btn.icon = ft.icons.PLAY_ARROW_ROUNDED
+            play_btn.icon = ft.Icons.PLAY_ARROW_ROUNDED
             album_art.rotate = ft.Rotate(angle=0)
         else:
             audio_player.resume()
-            play_btn.icon = ft.icons.PAUSE_ROUNDED
+            play_btn.icon = ft.Icons.PAUSE_ROUNDED
             album_art.rotate = ft.Rotate(angle=6.28)
         page.update()
 
@@ -161,7 +161,7 @@ def main(page: ft.Page):
     next_btn.on_click = next_song
     prev_btn.on_click = prev_song
 
-    search_input = ft.TextField(hint_text="جستجوی آهنگ در یوتیوب...", bgcolor=ft.colors.with_opacity(0.1, "white"), border_radius=30, color="white", border=ft.InputBorder.NONE, prefix_icon=ft.icons.SEARCH, text_size=13)
+    search_input = ft.TextField(hint_text="جستجوی آهنگ در یوتیوب...", bgcolor=ft.Colors.with_opacity(0.1, "white"), border_radius=30, color="white", border=ft.InputBorder.NONE, prefix_icon=ft.Icons.SEARCH, text_size=13)
 
     def download_url(url, title):
         def run():
@@ -195,7 +195,7 @@ def main(page: ft.Page):
                     yt_results.controls.clear()
                     for entry in info.get('entries', []):
                         if entry:
-                            row = ft.ListTile(leading=ft.Icon(ft.icons.DOWNLOAD, color="#a777e3"), title=ft.Text(entry.get('title'), color="white", size=12), on_click=lambda e, u=entry.get('url'), t=entry.get('title'): download_url(u, t))
+                            row = ft.ListTile(leading=ft.Icon(ft.Icons.DOWNLOAD, color="#a777e3"), title=ft.Text(entry.get('title'), color="white", size=12), on_click=lambda e, u=entry.get('url'), t=entry.get('title'): download_url(u, t))
                             yt_results.controls.append(row)
                     page.update()
             except:
@@ -205,12 +205,12 @@ def main(page: ft.Page):
 
     search_input.on_submit = search_yt
 
-    header = ft.Container(content=ft.Row([ft.Icon(ft.icons.GRAPHIC_EQ_ROUNDED, color="#a777e3", size=25), ft.Text("Samyar Player", size=18, weight=ft.FontWeight.BOLD, color="white")]), padding=10)
-    player_section = ft.Container(content=ft.Column([album_art, now_playing_title, now_playing_artist, ft.Container(content=lyric_text, padding=10, border_radius=10, bgcolor=ft.colors.with_opacity(0.05, "white"), alignment=ft.alignment.center), ft.Row([time_current, progress_slider, time_total], alignment=ft.MainAxisAlignment.SPACE_BETWEEN), ft.Row([prev_btn, play_btn, next_btn], alignment=ft.MainAxisAlignment.CENTER, spacing=20)], horizontal_alignment=ft.CrossAxisAlignment.CENTER), padding=10)
-    glass_container = ft.Container(content=player_section, bgcolor=ft.colors.with_opacity(0.1, "white"), blur=20, border_radius=25, border=ft.border.all(1, ft.colors.with_opacity(0.2, "white")), margin=10)
-    tab_offline = ft.Container(content=ft.Column([ft.ElevatedButton("📂 افزودن آهنگ از گوشی", icon=ft.icons.FOLDER_OPEN, on_click=lambda _: file_picker.pick_files(allow_multiple=True, file_type=ft.FilePickerFileType.AUDIO), bgcolor="#a777e3", color="white", style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=10))), music_list], expand=True), padding=10)
+    header = ft.Container(content=ft.Row([ft.Icon(ft.Icons.GRAPHIC_EQ_ROUNDED, color="#a777e3", size=25), ft.Text("Samyar Player", size=18, weight=ft.FontWeight.BOLD, color="white")]), padding=10)
+    player_section = ft.Container(content=ft.Column([album_art, now_playing_title, now_playing_artist, ft.Container(content=lyric_text, padding=10, border_radius=10, bgcolor=ft.Colors.with_opacity(0.05, "white"), alignment=ft.Alignment.CENTER), ft.Row([time_current, progress_slider, time_total], alignment=ft.MainAxisAlignment.SPACE_BETWEEN), ft.Row([prev_btn, play_btn, next_btn], alignment=ft.MainAxisAlignment.CENTER, spacing=20)], horizontal_alignment=ft.CrossAxisAlignment.CENTER), padding=10)
+    glass_container = ft.Container(content=player_section, bgcolor=ft.Colors.with_opacity(0.1, "white"), blur=20, border_radius=25, border=ft.Border.all(1, ft.Colors.with_opacity(0.2, "white")), margin=10)
+    tab_offline = ft.Container(content=ft.Column([ft.ElevatedButton("📂 افزودن آهنگ از گوشی", icon=ft.Icons.FOLDER_OPEN, on_click=lambda _: file_picker.pick_files(allow_multiple=True, file_type=ft.FilePickerFileType.AUDIO), bgcolor="#a777e3", color="white", style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=10))), music_list], expand=True), padding=10)
     tab_download = ft.Container(content=ft.Column([search_input, yt_results]), padding=10)
-    tabs = ft.Tabs(selected_index=0, animation_duration=300, tabs=[ft.Tab(text="پلیر", icon=ft.icons.PLAY_CIRCLE, content=glass_container), ft.Tab(text="آهنگ‌ها", icon=ft.icons.LIBRARY_MUSIC, content=tab_offline), ft.Tab(text="دانلود", icon=ft.icons.CLOUD_DOWNLOAD, content=tab_download)], expand=True)
+    tabs = ft.Tabs(selected_index=0, animation_duration=300, tabs=[ft.Tab(text="پلیر", icon=ft.Icons.PLAY_CIRCLE, content=glass_container), ft.Tab(text="آهنگ‌ها", icon=ft.Icons.LIBRARY_MUSIC, content=tab_offline), ft.Tab(text="دانلود", icon=ft.Icons.CLOUD_DOWNLOAD, content=tab_download)], expand=True)
     page.add(ft.Column([header, tabs], expand=True, spacing=0))
 
 ft.run(main)
