@@ -213,4 +213,4 @@ def main(page: ft.Page):
     tabs = ft.Tabs(selected_index=0, animation_duration=300, tabs=[ft.Tab(text="پلیر", icon=ft.icons.PLAY_CIRCLE, content=glass_container), ft.Tab(text="آهنگ‌ها", icon=ft.icons.LIBRARY_MUSIC, content=tab_offline), ft.Tab(text="دانلود", icon=ft.icons.CLOUD_DOWNLOAD, content=tab_download)], expand=True)
     page.add(ft.Column([header, tabs], expand=True, spacing=0))
 
-ft.app(target=main)
+ft.run(main)
